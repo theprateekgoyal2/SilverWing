@@ -1,7 +1,7 @@
 import os
 import sys
 from flask import Flask
-from src.extensions import mail, bcrypt, jwt_manager
+from src.app_info.extensions import mail, bcrypt, jwt_manager
 from src.config.app_config import configure_current_application
 
 sys.path.insert(0, 'src/')
