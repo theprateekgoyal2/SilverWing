@@ -75,8 +75,6 @@ You’ll see a dashboard listing dishes. Click on a dish name to view details, a
 
 
 ### 🛠️ Tech Stack
-From the frontend/ folder:
-
 ```bash
 Backend: Flask, SQLAlchemy, SQLite
 Frontend: Streamlit
@@ -84,7 +82,6 @@ Language: Python 3.9+
 ```
 
 ### 🚀 Future Enhancements
-From the frontend/ folder:
 
 ```bash
 Add socket support for real-time updates
