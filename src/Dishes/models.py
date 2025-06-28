@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, String, Text, Boolean
-
+import pytz
+from datetime import datetime
+from sqlalchemy import Column, Integer, String, Text, Boolean, DateTime, func
 from src.sql_config import Base
 
 
@@ -11,6 +12,8 @@ class Dishes(Base):
     description = Column(Text, nullable=True)
     is_published = Column(Boolean, default=False)
     image_url = Column(Text)
+    dt_created = Column(DateTime, default=func.now())
+    dt_updated = Column(DateTime, onupdate=func.now(), default=func.now())
 
     def __repr__(self):
         return f"<Dish_id={self.dish_id}>"
@@ -38,5 +41,22 @@ class Dishes(Base):
             'dish_name': self.dish_name,
             'description': self.description,
             'is_published': self.is_published,
-            'image_url': self.image_url
+            'image_url': self.image_url,
+            'last_updated': format_datetime_to_ist(self.dt_updated)
         }
+
+
+def format_datetime_to_ist(dt_obj: datetime) -> str:
+    if not isinstance(dt_obj, datetime):
+        raise TypeError(f"Expected datetime, got {type(dt_obj)}")
+
+    # First: Localize to UTC if naive
+    if dt_obj.tzinfo is None:
+        dt_obj = pytz.utc.localize(dt_obj)
+
+    # Then: Convert to IST
+    ist = pytz.timezone("Asia/Kolkata")
+    ist_time = dt_obj.astimezone(ist)
+
+    # Finally: Format to readable string
+    return ist_time.strftime("%b %d, %Y %I:%M %p")

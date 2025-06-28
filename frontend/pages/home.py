@@ -30,6 +30,7 @@ else:
 
             description = dish.get("description") or "No description available"
             st.caption(description)
+            st.write(f'last updated at: {dish.get("last_updated")}')
 
             publish = dish.get("is_published", False)
             button_text = "Unpublish" if publish else "Publish"
