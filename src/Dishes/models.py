@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Text, Boolean
 
-from sql_config import Base
+from src.sql_config import Base
 
 
 class Dishes(Base):
@@ -15,13 +15,12 @@ class Dishes(Base):
     def __repr__(self):
         return f"<Dish_id={self.dish_id}>"
 
-    @classmethod
-    def add_dish(cls, dish_name: str, description: str = None, image_url: str = None):
-        return cls(
-            dish_name=dish_name,
-            description=description,
-            image_url=image_url
-        )
+    def __init__(self,dish_name: str, description: str = None,
+                 image_url: str = None, is_published: bool = False):
+        self.dish_name = dish_name
+        self.description = description
+        self.image_url = image_url
+        self.is_published = is_published
 
     @classmethod
     def get_by_id(cls, session, dish_id: int, with_for_update=False, no_wait=False):

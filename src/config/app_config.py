@@ -10,7 +10,7 @@ def configure_current_application():
 
 
 def configure_database():
-    from sql_config import Base, engine
+    from src.sql_config import Base, engine
     logging.info("✅ Running Database Configuration...")
     Base.metadata.create_all(engine, checkfirst=True)  # Creates tables if missing
     logging.info("✅ Tables Created (if not exist)")

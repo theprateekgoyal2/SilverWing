@@ -1,3 +1,3 @@
-from Dishes.routes import routes as dishes_routes
+from src.Dishes.routes import routes as dishes_routes
 
-SILVERWING_ROUTES = [dishes_routes]
+SILVERWING_ROUTES = dishes_routes

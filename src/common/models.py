@@ -1,3 +1,3 @@
-from Dishes.models import Dishes
+from src.Dishes.models import Dishes
 
 all_models = [Dishes]
